@@ -1,0 +1,54 @@
+GENERAL:
+    SCREEN_CFG:     'config/RCMower_Screens.yml'
+    SCREEN_SIZE:    [800,480]
+    SERIAL:         "/dev/ttyAMA0"
+    EVDEVICE:       "/dev/input/event2"
+    TOUCHDEVICE:    "/dev/input/event1"
+    SDL_FBDEV:      "/dev/fb0"
+    SDL_MOUSEDEV:   "/dev/input/touchscreen"
+    SDL_MOUSEDRV:   "TSLIB"
+    BAUD:           57600
+    REBOOT_NODEVICE: True               # reboot if no device found
+
+MOTORS:
+    SPEED_MAP:      [-3200, 3200]
+    LEFT:
+        ID:         1
+        REVERSE:    'R'
+        OFFSET:     0
+    RIGHT:
+        ID:         2
+        REVERSE:    ''
+        OFFSET:     0
+ 
+GPIO:
+    MOTOR_RESET:    4
+    MOTOR_ERROR:    17
+
+GUI:
+   SPEED_MAP:       [-255,255]
+
+CONTROLLER:
+    SPEED_MAP:      [-127,127]
+    ESTOP_LEFT:     "BTN_Y"
+    ESTOP_RIGHT:    "BTN_Z"
+    MIXER1:         False
+    MIXER2:         False
+    ADJUST_NULL:    
+        "ABS_Z":    -1
+        "ABS_Y":    0
+        "ABS_X":    0
+        "ABS_RZ":   0       
+
+    MIXER1_KEY:     "ABS_HAT0Y"
+    SPEED_FACTORS: 
+        "BTN_X":    0.5
+        "BTN_C":    0.6
+        "BTN_B":    0.8
+        "BTN_A":    1.0
+    
+
+    CMD_MIXER1: "self.setMixer1"
+    CMD_MIXER2: "self.setMixer2"
+    CMD_ESTOP: "self.setEStop"
+    CMD_ESTOP: "self.setEStop"

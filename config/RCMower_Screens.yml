@@ -1,0 +1,157 @@
+#--- GENERAL declarations
+  GENERAL: 
+    FONT: "Arial Black.ttf"
+    SIZE: 20
+    FGCOLOR1: 0xECECECFF
+    BGCOLOR1: 0x0000FFFF
+    FGCOLOR2: 0xFFECECFF
+    BGCOLOR2: 0xBF4040FF
+    FGCOLOR3: 0xFF0000FF
+    BGCOLOR3: 0x000000FF
+
+    MAX_MULTIPLE_LINES: 20
+#---------------------------------------------------------------------
+# Screen description
+# Screen name, is used as class name too
+# KEYS : list of all used labels which should be displayed
+# 
+# SECTION (like RIGHT, LEFT, ...)
+# a section define a text, which is displayed. A section definition 
+# contains a value, the x/y position, a color, a display size (font size)
+# a font. If font is None, than general font is used
+#
+# if size is None, default size is used
+# if color is None, default color1 is used
+# if font is None, default font is used
+#---------------------------------------------------------------------
+
+#--- VELOCITY screen
+  VELOCITY:
+    #--- KEYS include a list of all used key/value pairs for this site
+    KEYS: [LEFT, RIGHT, REVERSE_LEFT, REVERSE_RIGHT, SPEED_FACTOR,   RUNNING, XBEE]
+    BACKGROUND_IMAGE: "velocity_800x480.png"
+    RIGHT:
+        X: 675                 # X-Position center
+        Y: 150                 # Y-Position center
+        FGCOLOR: 0xECECECFF      # Foreground color
+        BGCOLOR: 0x3040FFFF      # Background color
+        SIZE: 100               # Font size
+        FONT: None             # Font, if none use general font
+    LEFT: 
+        X: 205                 # X-Position center
+        Y: 150                 # Y-Position center
+        FGCOLOR: 0xECECECFF      # Foreground color
+        BGCOLOR: 0x0000FFFF          # Background color
+        SIZE: 100               # Font size
+        FONT: None             # Font, if none use general font
+    REVERSE_LEFT: 
+        X: 91                   # X-Position center
+        Y: 101                   # Y-Position center
+        FGCOLOR: 0x0000FFFF      # Foreground color
+        BGCOLOR: None          # Background color
+        SIZE: 30               # Font size
+        FONT: None             # Font, if none use general font
+    REVERSE_RIGHT: 
+        X: 570                   # X-Position center
+        Y: 101                   # Y-Position center
+        FGCOLOR: 0x0000FFFF      # Foreground color
+        BGCOLOR: None          # Background color
+        SIZE: 30               # Font size
+        FONT: None             # Font, if none use general font
+    SPEED_FACTOR :             # Speed-Factor (0.5, 0.6,0.8,1.0)
+        X: 150                   # X-Position center
+        Y: 25                   # Y-Position center
+        FGCOLOR: 0xFFCC99FF      # Foreground color
+        BGCOLOR: None          # Background color
+        SIZE: 40               # Font size
+        FONT: None             # Font, if none use general font
+    CAPACITY    :                  # "RECEIVE-strongness"
+        X: 675                   # X-Position center
+        Y: 378                   # Y-Position center
+        FGCOLOR: 0xECECECFF      # Foreground color
+        BGCOLOR: None          # Background color
+        SIZE: 40               # Font size
+        FONT: None             # Font, if none use general font
+    VOLT    :                  # "RECEIVE-strongness"
+        X: 675                   # X-Position center
+        Y: 312                   # Y-Position center
+        FGCOLOR: 0xECECECFF      # Foreground color
+        BGCOLOR: None          # Background color
+        SIZE: 40               # Font size
+        FONT: None             # Font, if none use general font
+    AMPERE    :                  # "RECEIVE-strongness"
+        X: 675                   # X-Position center
+        Y: 345                   # Y-Position center
+        FGCOLOR: 0xECECECFF      # Foreground color
+        BGCOLOR: None          # Background color
+        SIZE: 40               # Font size
+        FONT: None             # Font, if none use general font
+    MIXER1    :                  # "RECEIVE-strongness"
+        X: 398                   # X-Position center
+        Y: 25                   # Y-Position center
+        FGCOLOR: 0xECECECFF      # Foreground color
+        BGCOLOR: None          # Background color
+        SIZE: 35               # Font size
+        FONT: None             # Font, if none use general font
+    MIXER2    :                  # "RECEIVE-strongness"
+        X: 398                   # X-Position center
+        Y: 25                   # Y-Position center
+        FGCOLOR: 0xECECECFF      # Foreground color
+        BGCOLOR: None          # Background color
+        SIZE: 35               # Font size
+        FONT: None             # Font, if none use general font
+
+
+    LOG:
+        X: 328
+        Y: 85
+        W: 190
+        H: 310
+        FGCOLOR: None
+        BGCOLOR: None
+        SIZE: 25
+        FONT: None
+    HEARTBEAT:
+        X: 778
+        Y: 23
+        FGCOLOR: 0x00FF50FF
+        BGCOLOR: 0xD35F5FFF
+        SIZE: 20
+        FONT: None
+
+  BUTTONS:       
+    BTN_RUN:
+        TEXT: "RUN"
+        ACTION: "Do_RunStop"
+        X: 149                  # 
+        Y: 432
+        W: 135
+        H: 35
+    BTN_PREV:
+        TEXT: "<<"
+        ACTION: "Do_Prev"
+        X: 310                  # 
+        Y: 432
+        W: 100
+        H: 35
+    BTN_NEXT:
+        TEXT: ">>"
+        ACTION: "Do_Next"
+        X: 481                  # 
+        Y: 432
+        W: 100
+        H: 35
+    BTN_RESET:
+        TEXT: "RESTART"
+        ACTION: "Do_Restart"
+        X: 615                  # 
+        Y: 432
+        W: 135
+        H: 35
+    BTN_STOP:
+        TEXT: ""
+        ACTION: "Do_Shutdown"
+        X: 35                  # 
+        Y: 120
+        W: 55
+        H: 55
