@@ -9,7 +9,6 @@ import yaml
 #import subprocess
 #import evdev
 
-
 from evdev import *
 #from time import sleep
 from threading import Thread, Timer
