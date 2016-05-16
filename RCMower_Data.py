@@ -157,7 +157,7 @@ class Data_Velocity(RCMower_Data):
             return self.speedLimit[1]
         return self.speedLimit
 
-    def setSpeed(self, left, right):
+    def setSpeed(self, left, right, FGColor=None):
         '''
         set speed value for left & right motor
         change color if value is negative
@@ -172,9 +172,16 @@ class Data_Velocity(RCMower_Data):
         self.speed['RIGHT']['BGCOLOR']=None
 
         if left < 0:
-            self.speed['LEFT']['FGCOLOR']=0xFF0000FF
+            if FGColor == None
+                self.speed['LEFT']['FGCOLOR']=0xFF0000FF
+            else:
+                self.speed['LEFT']['FGCOLOR']=FGColor
+
         if right < 0:
-            self.speed['RIGHT']['FGCOLOR']=0xFF0000FF
+            if FGColor == None
+                self.speed['RIGHT']['FGCOLOR']=0xFF0000FF
+            else:
+                self.speed['RIGHT']['FGCOLOR']=FGColor
 
         self.speed['LEFT']['VALUE']=left
         self.speed['RIGHT']['VALUE']=right

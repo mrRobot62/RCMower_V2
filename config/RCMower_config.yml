@@ -20,7 +20,7 @@ MOTORS:
         ID:         2
         REVERSE:    ''
         OFFSET:     0
- 
+
 GPIO:
     MOTOR_RESET:    4
     MOTOR_ERROR:    17
@@ -34,19 +34,20 @@ CONTROLLER:
     ESTOP_RIGHT:    "BTN_Z"
     MIXER1:         False
     MIXER2:         False
-    ADJUST_NULL:    
+    ADJUST_NULL:
         "ABS_Z":    -1
         "ABS_Y":    0
         "ABS_X":    0
-        "ABS_RZ":   0       
+        "ABS_RZ":   0
 
     MIXER1_KEY:     "ABS_HAT0Y"
-    SPEED_FACTORS: 
+    MIXER2_KEY:     "ABS_HAT0X"
+    SPEED_FACTORS:
         "BTN_X":    0.5
         "BTN_C":    0.6
         "BTN_B":    0.8
         "BTN_A":    1.0
-    
+
 
     CMD_MIXER1: "self.setMixer1"
     CMD_MIXER2: "self.setMixer2"

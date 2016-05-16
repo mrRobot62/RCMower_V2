@@ -27,7 +27,7 @@ class RCMower():
     driver = None
     cfg_file = None
     dataVel = None
-    screen_size = []
+    screen_size =  []
     cnt = 0
     reboot_nodevicefound = False
 
@@ -149,7 +149,6 @@ class RCMower():
     def setRunning(self, gui, state=True):
         '''
         callback function
-
         from Screen_Actions
 
         '''
@@ -164,15 +163,6 @@ class RCMower():
     def getRunning(self):
         #print ("{0} - get running ({1})".format(self.class_name, self.running))
         return self.running
-
-    def isEstopActive(self, event=None):
-        if event != None:
-            if event.value == self.cfg_file['CONTROLLER']['ESTOP_LEFT']:
-                return self.dataVel.setEStop()
-            elif event.value == self.cfg_file['CONTROLLER']['ESTOP_RIGHT']:
-                return self.dataVel.setEStop()
-
-        return self.dataVel.resetEStop()
 
     def checkEvdevAvailable(self):
         '''
@@ -327,11 +317,48 @@ class RCMower():
         else:
             return
 
-        if (self.isEstopActive(event)):
-            self.actionEStop(True)
+        self.checkEStopButtons(event)
+        self.checkMixerActive(1, event)
+        self.checkJoystick(event)
+        self.checkSpeedFactor(event)
         pass
 
+    #----------- EVENT checking ------------------------------------
+    def checkEStopButtons(self, event=None):
+        '''
+        return True if both buttons are not pressed
+        return False if one or both buttons are pressed
+        '''
+        if event != None:
+            if event.value == self.cfg_file['CONTROLLER']['ESTOP_LEFT']:
+                return self.dataVel.setEStop()
+            elif event.value == self.cfg_file['CONTROLLER']['ESTOP_RIGHT']:
+                return self.dataVel.setEStop()
+        return self.dataVel.resetEStop()
 
+    def checkMixerActive(self, id=0, event=None):
+        '''
+        check if mixer button was pressed
+
+        return True if Mixer1-Button pressed
+        return False if Mixer1-Button not pressed
+        '''
+        if event != None:
+            if event.value == self.cfg_file['CONTROLLER']['MIXER1_KEY']:
+                self.dataVel.setMixerOn(1)
+                return True
+            elif event.value == self.cfg_file['CONTROLLER']['MIXER2_KEY']:
+                self.dataVel.setMixerOn(2)
+                return True
+
+        self.dataVel.setMixerOff(id)
+        return False
+
+    def checkJoystick(self, event=None):
+        pass
+
+    def checkSpeedFactor(self, event=None):
+        pass
     #----------- ACTIONS depending on events -----------------------
     def actionEstop(self, on=True):
         if on:
@@ -341,6 +368,9 @@ class RCMower():
         else:
             self.isEStop = False
 
+        pass
+
+    def actionMixer(self, id=0):
         pass
 
     #-------------------- MAIN LOOP --------------------------------
@@ -384,9 +414,7 @@ class RCMower():
         #-----------------------------------
         self.screens[self.currentScreenID].addMultipleLine(3,22, "RUN")
         while self.restarting == False:
- #           if self.eventQueue.empty() != True:
-
-            if (self.getRunning() == True):
+             if (self.getRunning() == True):
                 #--- system running
                 sl = randint(-255,255)
                 sr = randint(-255,255)
@@ -400,7 +428,6 @@ class RCMower():
 
                 #self.dataVel.setSpeed(sl,sr)
                 #time.sleep(0.7)
-#                pass
 
             self.screens[self.currentScreenID].checkButtons()
             self.screens[self.currentScreenID].update(self.dataVel.getDataDict())
@@ -421,7 +448,7 @@ class RCMower():
         self.timer_hb = None
         pass
 
-
+#----------- special classes ---------------------------------------
 class RepeatedTimer(object):
     def __init__(self,t,hFunction, *args, **kwargs):
         self._timer       = None
@@ -449,6 +476,7 @@ class RepeatedTimer(object):
 
 
 
+#----------- main procedure ----------------------------------------
 def main():
     print ("start mower....")
     mower = RCMower();

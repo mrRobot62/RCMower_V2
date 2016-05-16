@@ -30,6 +30,6 @@ class RCMower_Driver(object):
         self.motors.Stop()
         pass
 
-    def Speed(dataVel):
+    def Go(dataVel):
         self.motors.Go(dataVel.getMotorSpeed())
         pass
